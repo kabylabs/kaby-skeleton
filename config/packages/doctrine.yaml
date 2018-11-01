@@ -20,10 +20,25 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+
+        dql:
+            datetime_functions:
+                date:   Oro\ORM\Query\AST\Functions\SimpleFunction
+            numeric_functions:
+                timestampdiff:  Oro\ORM\Query\AST\Functions\Numeric\TimestampDiff
+                week:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                day:            Oro\ORM\Query\AST\Functions\SimpleFunction
+                hour:           Oro\ORM\Query\AST\Functions\SimpleFunction
+                minute:         Oro\ORM\Query\AST\Functions\SimpleFunction
+                month:          Oro\ORM\Query\AST\Functions\SimpleFunction
+                year:           Oro\ORM\Query\AST\Functions\SimpleFunction
+            string_functions:
+                cast:   Oro\ORM\Query\AST\Functions\Cast
+
         mappings:
-            App:
-                is_bundle: false
+            gedmo_loggable:
                 type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+                prefix: Gedmo\Loggable\Entity
+                dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                alias: KabyLoggable
+                is_bundle: false
